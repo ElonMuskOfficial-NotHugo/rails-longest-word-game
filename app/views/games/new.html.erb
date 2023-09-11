@@ -1,0 +1,24 @@
+<h2 class="text-center mb-4 mt-4">Longest Word Game</h2>
+<div class="container border rounded-lg">
+  <div class="row m-4">
+    <% @random_letter_array.each do |random_letter| %>
+      <div class="col">
+        <div class="card custom-card">
+          <div class="card-body text-center">
+            <%= random_letter %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <form action="/score" method="POST" data-turbo="false">
+    <div class="input-group p-3">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @random_letter_array %>
+      <input type="text" name="answer" class="form-control" placeholder="Guess your word" value="<%= params[:answer] %>">
+      <div class="input-group-append">
+        <input class="btn btn-primary" type="submit">
+      </div>
+    </div>
+  </form>
+</div>
